@@ -1,0 +1,69 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Login | Retail</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="keywords" content="your,keywords">
+		<meta name="description" content="Short explanation about this website">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
+		<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/materialadmin.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}" />
+	</head>
+	<body class="menubar-hoverable header-fixed ">
+		<section class="section-account">
+			<div class="img-backdrop" style="background-image: url('img/img16.jpg')"></div>
+			<div class="card contain-sm style-transparent" style="max-width:450px">
+				<div class="card-body">
+					<div class="card">
+						<div class="card-body">
+							<span class="text-lg text-bold text-primary">Login Authentication</span>
+							<br/><br/>
+							<form class="form floating-label" action="{% url 'login' %}" accept-charset="utf-8" method="post">
+
+		                        {% csrf_token %}
+
+		                        {% if form.errors %}
+
+		                            <div class="alert alert-danger">
+		                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		                                <strong>Error!</strong> Your username and password didn't match. Please try again.
+		                            </div>
+
+		                        {% endif %}
+
+								<div class="form-group">
+									{{ form.username|add_class:"form-control" }}
+									<label for="username">Username</label>
+								</div>
+								<div class="form-group">
+									{{ form.password|add_class:"form-control" }}
+									<label for="password">Password</label>
+								</div>
+								<br/>
+								<div class="row">
+									<div class="col-xs-6 text-left">
+
+									</div>
+									<div class="col-xs-6 text-right">
+										<button class="btn btn-primary btn-raised" type="submit">Login</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script src="{% static 'js/libs/jquery/jquery-1.11.2.min.js' %}"></script>
+		<script src="{% static 'js/libs/bootstrap/bootstrap.min.js' %}"></script>
+
+		<script src="{% static 'js/core/AppForm.js' %}"></script>
+
+	</body>
+</html>

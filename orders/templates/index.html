@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %} Order Details {% endblock %}
+
+{% block body %}
+                <section>
+                    <div class="section-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-head style-primary">
+                                        <header>Order Details</header>
+                                    </div>
+                                    <div class="card-body">
+                                            <table id="datatable" class="table order-column hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Phone</th>
+                                                        <th>Address</th>
+                                                        <th>Delivery Date</th>
+                                                        <th>Product</th>
+                                                        <th>Amount</th>
+                                                        <th>Status</th>
+                                                        <th width="150px">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for order in orders %}
+                                                        <tr class="gradeX">
+                                                            <td>{{ order.name }}</td>
+                                                            <td>{{ order.phone }}</td>
+                                                            <td>{{ order.address }}</td>
+                                                            <td>{{ order.delivery_date }}</td>
+                                                            <td>{{ order.product_id }}</td>
+                                                            <td>{{ order.amount }}</td>
+                                                            <td><b> {{ order.order_status }}</b></td>
+                                                            <td>
+                                                                <a href="{% url 'edit' order.id %}" ><i class="md md-edit"></i> </a>&nbsp;&nbsp;&nbsp;
+                                                                <a href="{% url 'delete' order.id %}"  onclick="return confirm('Are you sure you want to delete the order?')"><i class="md md-delete"></i> </a>
+{#                                                                <a href="{% url 'show' order.id %}" class="btn ink-reaction btn-floating-action btn-primary"><i class="md md-print"></i> </a>#}
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                </div>       
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+{% endblock %}
